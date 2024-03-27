@@ -4,6 +4,123 @@
 # Tables created by Spring Boot - admin, cart_item, category, contact_form, food_item, orders, review, user
 # Sample data for category 
 
+DDL commands for database-
+
+FOR ADMIN:
+
+CREATE TABLE `admin` (
+  `admin_id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `employee_id` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`admin_id`),
+  UNIQUE KEY `UK_c0r9atamxvbhjjvy5j8da1kam` (`email`),
+  UNIQUE KEY `UK_747rtyc4wvkbvd2k2x84qofpw` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+FOR CART:
+
+CREATE TABLE `cart_item` (
+  `cart_item_id` bigint NOT NULL AUTO_INCREMENT,
+  `distance` double NOT NULL,
+  `quantity` int NOT NULL,
+  `total_food_item_cost` double NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `food_item_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`cart_item_id`),
+  KEY `FK9h8tcdhcocm5ars5klodoxov9` (`food_item_id`),
+  CONSTRAINT `FK9h8tcdhcocm5ars5klodoxov9` FOREIGN KEY (`food_item_id`) REFERENCES `food_item` (`food_item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+FOR CATEGORY:
+
+CREATE TABLE `category` (
+  `category_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `UK_46ccwnsi9409t36lurvtyljak` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+FOR CONTACTFORM:
+
+CREATE TABLE `contact_form` (
+  `contact_form_id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`contact_form_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+FOR FOOD ITEM:
+
+CREATE TABLE `food_item` (
+  `food_item_id` bigint NOT NULL AUTO_INCREMENT,
+  `actual_price` double NOT NULL,
+  `available_quantity` int NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `enabled` bit(1) NOT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `offer` double NOT NULL,
+  `category_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`food_item_id`),
+  KEY `FK3omsn0mggulies5jhowcv9qoa` (`category_id`),
+  CONSTRAINT `FK3omsn0mggulies5jhowcv9qoa` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+FOR ORDERS:
+
+CREATE TABLE `orders` (
+  `order_id` bigint NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `contact` varchar(255) DEFAULT NULL,
+  `distance` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `payment_id` varchar(255) DEFAULT NULL,
+  `payment_method` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `total_amount` varchar(255) DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `zip` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+FOR REVIEW:
+
+
+CREATE TABLE `review` (
+  `review_id` bigint NOT NULL AUTO_INCREMENT,
+  `review_comment` varchar(255) DEFAULT NULL,
+  `review_name` varchar(255) DEFAULT NULL,
+  `review_star` int NOT NULL,
+  PRIMARY KEY (`review_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+FOR USER:
+
+CREATE TABLE `user` (
+  `user_id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `mobile_number` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`),
+  UNIQUE KEY `UK_lt2b8ocin3hdnm9q6fm4o8xnr` (`mobile_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
 
 INSERT INTO foodbox.category (Restaurant name)
 VALUES
@@ -37,4 +154,8 @@ INSERT INTO foodbox.admin (email, employee_id, name, password) VALUES
 INSERT INTO foodbox.user (email, mobile_number ,name, password) VALUES
 ('user1@gmail.com',	'1234567890',	'User1',	'733@Bc'),
 ('ally@gmail.com'  ,	'9698745214',	'Ally' ,	'Ally@123');
+
+
+
+
 
